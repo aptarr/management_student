@@ -33,7 +33,6 @@
 
     ```bash
     npm install
-    npm run dev
     ```
 6. **Menjalankan Aplikasi**  
 
@@ -69,7 +68,7 @@ Pastikan sistem Anda memiliki versi berikut:
 | Composer     | 2.x            | `composer --version`          |
 | Node.js      | 22.x           | `node -v`                     |
 | NPM          | 8.x            | `npm -v`                      |
-| Laravel      | 9.x           | `php artisan --version`       |
-| Database     | MySQL / MariaDB| -                             |
+| Laravel      | 9.x            | `php artisan --version`       |
+| Database     | MySQL          | -                             |
 
 
