@@ -1,0 +1,304 @@
+<x-app-layout>
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Edit Student
+            </h2>
+            <div class="space-x-4">
+                <a href="{{ route('students.exportData', $student->id) }}" target="_blank"
+                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+                    Export PDF
+                </a>
+            </div>
+        </div>
+    </x-slot>
+
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">    
+                <form action="{{ route('students.update', $student->id) }}" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    @csrf
+                    @method('PATCH')
+                    <div>
+                        <label for="nis" class="block text-sm font-medium text-gray-700">NIS</label>
+                        <input type="text" name="nis" id="nis" value="{{ old('nis', $student->nis) }}"required class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="nama" class="block text-sm font-medium text-gray-700">Nama</label>
+                        <input type="text" name="nama" id="nama" value="{{ old('nama', $student->nama) }}" required class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                        <select name="gender" id="gender" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                            <option value="Laki-laki" {{ old('gender', $student->gender) == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="Perempuan" {{ old('gender', $student->gender) == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="nikah" class="block text-sm font-medium text-gray-700">Status Nikah</label>
+                        <select name="nikah" id="nikah" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                            <option value="Belum Menikah" {{ old('nikah', $student->nikah) == 'Belum Menikah' ? 'selected' : '' }}>Belum Menikah</option>
+                            <option value="Menikah" {{ old('nikah', $student->nikah) == 'Menikah' ? 'selected' : '' }}>Menikah</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="tanggal_lahir" class="block text-sm font-medium text-gray-700">Tanggal Lahir</label>
+                        <input type="date" name="tanggal_lahir" id="tanggal_lahir" value="{{ old('tanggal_lahir', $student->tanggal_lahir) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="umur" class="block text-sm font-medium text-gray-700">Umur</label>
+                        <input type="number" name="umur" id="umur" value="{{ old('umur', $student->umur) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="kewarganegaraan" class="block text-sm font-medium text-gray-700">Kewarganegaraan</label>
+                        <input type="text" name="kewarganegaraan" id="kewarganegaraan" value="{{ old('kewarganegaraan', $student->kewarganegaraan) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="bahasa" class="block text-sm font-medium text-gray-700">Bahasa</label>
+                        <input type="text" name="bahasa" id="bahasa" value="{{ old('bahasa', $student->bahasa) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm" placeholder="Contoh: Indonesia, Inggris">
+                    </div>
+
+                    <div>
+                        <label for="domisili" class="block text-sm font-medium text-gray-700">Domisili</label>
+                        <input type="text" name="domisili" id="domisili" value="{{ old('domisili', $student->domisili) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="nomor" class="block text-sm font-medium text-gray-700">Nomor HP</label>
+                        <input type="text" name="nomor" id="nomor" value="{{ old('nomor', $student->nomor) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" name="email" id="email" value="{{ old('email', $student->email) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="hobi" class="block text-sm font-medium text-gray-700">Hobi</label>
+                        <input type="text" name="hobi" id="hobi" value="{{ old('hobi', $student->hobi) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="tinggi_badan" class="block text-sm font-medium text-gray-700">Tinggi Badan (cm)</label>
+                        <input type="number" name="tinggi_badan" id="tinggi_badan" value="{{ old('tinggi_badan', $student->tinggi_badan) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="berat_badan" class="block text-sm font-medium text-gray-700">Berat Badan (kg)</label>
+                        <input type="number" name="berat_badan" id="berat_badan" value="{{ old('berat_badan', $student->berat_badan) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="ukuran_sepatu" class="block text-sm font-medium text-gray-700">Ukuran Sepatu</label>
+                        <input type="number" name="ukuran_sepatu" id="ukuran_sepatu" value="{{ old('ukuran_sepatu', $student->ukuran_sepatu) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="agama" class="block text-sm font-medium text-gray-700">Agama</label>
+                        <input type="text" name="agama" id="agama" value="{{ old('agama', $student->agama) }}" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700">Pengalaman Kerja</label>
+
+                        <div id="experience-wrapper" class="space-y-2 mt-2">
+                            @foreach(old('experiences', $student->experiences ?? []) as $index => $experience)
+                                <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1fr_auto] gap-4">
+                                    <input type="text" name="experiences[{{ $index }}][nama_perusahaan]" value="{{ $experience['nama_perusahaan'] ?? '' }}" class="border-gray-300 rounded-md shadow-sm" placeholder="Nama Perusahaan" required>
+                                    <input type="number" name="experiences[{{ $index }}][tahun_masukaperusahaan]" value="{{ $experience['tahun_masukaperusahaan'] ?? '' }}" class="border-gray-300 rounded-md shadow-sm" placeholder="Tahun Masuk" required>
+                                    <input type="text" name="experiences[{{ $index }}][bulan_masukaperusahaan]" value="{{ $experience['bulan_masukaperusahaan'] ?? '' }}" class="border-gray-300 rounded-md shadow-sm" placeholder="Bulan Masuk" required>
+                                    <input type="text" name="experiences[{{ $index }}][status]" value="{{ $experience['status'] ?? '' }}" class="border-gray-300 rounded-md shadow-sm" placeholder="Status" required>
+                                    <button type="button" class="text-red-600 hover:text-red-800 remove-experience" title="Hapus">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <button type="button" class="mt-2 text-sm text-blue-600 hover:underline" id="add-experience">
+                            + Tambah Pengalaman
+                        </button>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mt-4">Riwayat Pendidikan</label>
+
+                        <div id="education-wrapper" class="space-y-2 mt-2">
+                            @foreach(old('educations', $student->educations ?? []) as $index => $education)
+                                <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1fr_auto] gap-4">
+                                    <input type="text" name="educations[{{ $index }}][nama_sekolah]" value="{{ $education['nama_sekolah'] ?? '' }}" class="border-gray-300 rounded-md shadow-sm" placeholder="Nama Sekolah">
+                                    <input type="number" name="educations[{{ $index }}][tahun_masuksekolah]" value="{{ $education['tahun_masuksekolah'] ?? '' }}" class="border-gray-300 rounded-md shadow-sm"  placeholder="Tahun Masuk">
+                                    <input type="text" name="educations[{{ $index }}][bulan__masuksekolah]" value="{{ $education['bulan__masuksekolah'] ?? '' }}" class="border-gray-300 rounded-md shadow-sm"  placeholder="Bulan Masuk">
+                                    <input type="text" name="educations[{{ $index }}][status_sekolah]" value="{{ $education['status_sekolah'] ?? '' }}" class="border-gray-300 rounded-md shadow-sm"  placeholder="Status">
+                                    <button type="button" class="text-red-600 hover:text-red-800 remove-education">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <button type="button" id="add-education" class="mt-2 text-sm text-blue-600 hover:underline">
+                            + Tambah Pendidikan
+                        </button>
+                    </div>
+
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700">Sertifikat</label>
+
+                        <div id="certificate-wrapper" class="space-y-2 mt-2">
+                            @foreach(old('certificates', $student->certificates ?? []) as $index => $certificate)
+                                <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_auto] gap-4">
+                                    <input type="text" name="certificates[{{ $index }}][nama_certif]" value="{{ $certificate['nama_certif'] ?? '' }}" class="border-gray-300 rounded-md shadow-sm" placeholder="Nama Sertifikat">
+                                    <input type="number" name="certificates[{{ $index }}][tahun]" value="{{ $certificate['tahun'] ?? '' }}" class="border-gray-300 rounded-md shadow-sm" placeholder="Tahun">
+                                    <input type="text" name="certificates[{{ $index }}][bulan]" value="{{ $certificate['bulan'] ?? '' }}" class="border-gray-300 rounded-md shadow-sm" placeholder="Bulan">
+                                    <button type="button" class="text-red-600 hover:text-red-800 remove-certificate">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <button type="button" id="add-certificate" class="mt-2 text-sm text-blue-600 hover:underline">
+                            + Tambah Sertifikat
+                        </button>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label for="kelebihan" class="block text-sm font-medium text-gray-700">Kelebihan</label>
+                        <textarea name="kelebihan" id="kelebihan" rows="3" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">{{ old('kelebihan', $student->kelebihan) }}</textarea>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label for="kekurangan" class="block text-sm font-medium text-gray-700">Kekurangan</label>
+                        <textarea name="kekurangan" id="kekurangan" rows="3" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">{{ old('kekurangan', $student->kekurangan) }}</textarea>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label for="promosi" class="block text-sm font-medium text-gray-700">Promosi Diri</label>
+                        <textarea name="promosi" id="promosi" rows="3" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">{{ old('promosi', $student->promosi) }}</textarea>
+                    </div>
+
+                    <div>
+                        <label for="tinggal_jp" class="block text-sm font-medium text-gray-700">Tinggal JP</label>
+                        <select name="tinggal_jp" id="tinggal_jp" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">
+                            <option value="Ya" {{ old('tinggal_jp', $student->tinggal_jp) == 'Ya' ? 'selected' : '' }}>Ya</option>
+                            <option value="Tidak" {{ old('tinggal_jp', $student->tinggal_jp) == 'Tidak' ? 'selected' : '' }}>Tidak</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="keterangan_tinggal_jp" class="block text-sm font-medium text-gray-700">Keterangan Tinggal JP</label>
+                        <textarea name="keterangan_tinggal_jp" id="keterangan_tinggal_jp" rows="2" class="mt-1 w-full border-gray-300 rounded-md shadow-sm">{{ old('keterangan_tinggal_jp', $student->keterangan_tinggal_jp) }}</textarea>
+                    </div>
+
+                    <div class="md:col-span-2 flex justify-end items-center space-x-4 pt-4">
+                        <x-primary-button>Save</x-primary-button>
+                        <a href="{{ route('students.index') }}" class="text-sm text-gray-600 hover:text-gray-800">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-6 max-w-4xl mx-auto sm:px-6 lg:px-8">
+
+    </div>
+</x-app-layout>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+    // EXPERIENCE
+    let experienceIndex = $('#experience-wrapper > div').length;
+    $('#add-experience').on('click', function () {
+        $('#experience-wrapper').append(`
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1fr_auto] gap-4">
+                <input type="text" name="experiences[${experienceIndex}][nama_perusahaan]" class="border-gray-300 rounded-md shadow-sm" placeholder="Nama Perusahaan" required>
+                <input type="number" name="experiences[${experienceIndex}][tahun_masukaperusahaan]" class="border-gray-300 rounded-md shadow-sm" placeholder="Tahun Masuk" required>
+                <input type="text" name="experiences[${experienceIndex}][bulan_masukaperusahaan]" class="border-gray-300 rounded-md shadow-sm" placeholder="Bulan Masuk" required>
+                <input type="text" name="experiences[${experienceIndex}][status]" class="border-gray-300 rounded-md shadow-sm" placeholder="Status" required>
+                <button type="button" class="text-red-600 hover:text-red-800 remove-experience" title="Hapus">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                </button>
+            </div>
+        `);                
+        experienceIndex++;
+    });
+
+    $(document).on('click', '.remove-experience', function () {
+        $(this).closest('.grid').remove();
+        experienceIndex--;
+    });
+
+    // EDUCATIONS
+    let educationIndex = $('#education-wrapper > div').length;
+    $('#add-education').on('click', function () {
+        $('#education-wrapper').append(`
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_1fr_auto] gap-4">
+                <input type="text" name="educations[${educationIndex}][nama_sekolah]" class="border-gray-300 rounded-md shadow-sm" placeholder="Nama Sekolah" required>
+                <input type="number" name="educations[${educationIndex}][tahun_masuksekolah]" class="border-gray-300 rounded-md shadow-sm" placeholder="Tahun Masuk" required>
+                <input type="text" name="educations[${educationIndex}][bulan__masuksekolah]" class="border-gray-300 rounded-md shadow-sm" placeholder="Bulan Masuk" required>
+                <input type="text" name="educations[${educationIndex}][status_sekolah]" class="border-gray-300 rounded-md shadow-sm" placeholder="Status" required>
+                <button type="button" class="text-red-600 hover:text-red-800 remove-education" title="Hapus">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                </button>
+            </div>
+        `);
+        educationIndex++;
+    });
+
+    $(document).on('click', '.remove-education', function () {
+        $(this).closest('.grid').remove();
+        educationIndex--;
+    });
+
+    // CERTIFICATES
+    let certificateIndex = $('#certificate-wrapper > div').length;
+    $('#add-certificate').on('click', function () {
+        $('#certificate-wrapper').append(`
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_1fr_auto] gap-4">
+                <input type="text" name="certificates[${certificateIndex}][nama_certif]" class="border-gray-300 rounded-md shadow-sm" placeholder="Nama Sertifikat" required>
+                <input type="number" name="certificates[${certificateIndex}][tahun]" class="border-gray-300 rounded-md shadow-sm" placeholder="Tahun" required>
+                <input type="text" name="certificates[${certificateIndex}][bulan]" class="border-gray-300 rounded-md shadow-sm" placeholder="Bulan" required>
+                <button type="button" class="text-red-600 hover:text-red-800 remove-certificate" title="Hapus">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                </button>
+            </div>
+        `);
+        certificateIndex++;
+    });
+
+    $(document).on('click', '.remove-certificate', function () {
+        $(this).closest('.grid').remove();
+        certificateIndex--;
+    });
+});
+</script>
