@@ -27,11 +27,14 @@ Route::middleware('auth')->group(function () {
     Route::controller(StudentController::class)->group(function () {
         Route::get('/students', 'getStudents')->name('students.index');
         Route::get('/student/create', 'getStudentCreate')->name('students.create');
-        Route::get('/student/{staff_id}/edit', 'getStudentDetail')->name('students.detail');
+        Route::get('/student/{staff_id}/edit', 'getStudentEdit')->name('students.edit');
         Route::get('/students/export', 'exportFilteredStudents')->name('students.export');
         Route::get('/student/{student}/export-pdf', 'exportStudentsData')->name('students.exportData');
+
         Route::post('/students', 'createStudent')->name('students.store');
+
         Route::patch('/students/{staff_id}', 'updateStudent')->name('students.update');
+        
         Route::delete('/students/{staff_id}', 'deleteStudent')->name('students.destroy');
     });
 });

@@ -97,7 +97,7 @@ class StudentController extends Controller
         return view('student.create');
     }
 
-    public function getStudentDetail($staff_id){
+    public function getStudentEdit($staff_id){
         $student = Student::with(['experiences', 'educations', 'certificates'])->findOrFail($staff_id);
         return view('student.edit', compact('student'));
     }
@@ -179,7 +179,6 @@ class StudentController extends Controller
     public function updateStudent(Request $request, $id)
     {
         DB::transaction(function () use ($request, $id) {
-            // 1. Find the student
             $student = Student::findOrFail($id);
 
             // 2. Validate the main student fields
@@ -262,7 +261,6 @@ class StudentController extends Controller
 
     public function deleteStudent($staff_id){
         $student = Student::findOrFail($staff_id);
-        dd($student);
         $student->delete();
 
         return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
@@ -274,7 +272,7 @@ class StudentController extends Controller
 
         $students = $query->get();
 
-        $fileName = 'data_siswa_' . Carbon::now()->format('Y-m-d') . '.xlsx';
+        $fileName = 'data_siswa_' . Carbon::now('Asia/Jakarta')->format('Y-m-d') . '.xlsx';
 
         return Excel::download(new StudentsExport($students), $fileName);
     }
@@ -288,7 +286,6 @@ class StudentController extends Controller
         $pdf = PDF::loadView('student.export', compact('student'));
 
         // Return the PDF file as download or inline
-        return $pdf->download('student_'.$student->name.'.pdf');
+        return $pdf->download('CV_'.$student->nama.'.pdf');
     }
-
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        body { font-family: DejaVu Sans, sans-serif; font-size: 12px;}
+        body { font-family: Arial, Helvetica, sans-serif, sans-serif; font-size: 15px;}
         table { width: 100%; border-collapse: collapse; margin-bottom: 5px;}
         th, td { border: 1px solid #000; padding: 8px; text-align: left; }
         th { background-color: #f2f2f2; }
@@ -24,27 +24,27 @@
                 <img src="data:image/svg+xml;base64,{{ $logoBase64 }}" alt="Logo" style="width: 100px;">
             @endif
             </td>
-            <td colspan="4" style="vertical-align: middle; text-align: center; border-left: none; border-bottom: none;">Curiculum Vitae</td>
+            <td colspan="4" style="vertical-align: middle; text-align: center; border-left: none; border-bottom: none;"><b>Curiculum Vitae</b></td>
         </tr>
         <tr>
-            <td colspan="4" style="vertical-align: middle; text-align: center;border-left: none; border-top: none;">Pekerja Asing Berketerampilan Khusus</td>
+            <td colspan="4" style="vertical-align: middle; text-align: center;border-left: none; border-top: none;"><b>Pekerja Asing Berketerampilan Khusus</b></td>
         </tr>
         <tr>
             <th style="width: 150px;">Nama</th>
-            <td colspan="4">{{ $student->nama }}</td>
-        </tr>
-        <tr>
-            <th>Gender</th>
-            <td>{{ $student->gender }}</td>
-            <th>Status Nikah</th>
-            <td>{{ $student->nikah }}</td>
-            <td rowspan="6" style="vertical-align: middle; text-align: center; width: 200px;">
+            <td colspan="3" style="text-transform: uppercase;">{{ $student->nama }}</td>
+            <td rowspan="7" style="vertical-align: middle; text-align: center; width: 150px;">
                 Photo
             </td>
         </tr>
         <tr>
+            <th>Gender</th>
+            <td>{{ $student->gender }}</td>
             <th>Tanggal Lahir</th>
-            <td>{{ $student->tanggal_lahir }}</td>
+            <td>{{ $student->tanggal_lahir }}</td> 
+        </tr>
+        <tr>
+            <th>Status Nikah</th>
+            <td>{{ $student->nikah }}</td>           
             <th>Umur</th>
             <td>{{ $student->umur }}</td>
         </tr>
@@ -56,8 +56,8 @@
         </tr>
         <tr><th rowspan="3">Domisili</th><td colspan="3">{{ $student->domisili }}</td></tr>
         <tr>
-            <th>Tanggal Lahir</th>
-            <td colspan="2">{{ $student->tanggal_lahir }}</td>
+            <th>Nomor Telepon</th>
+            <td colspan="2">{{ $student->nomor }}</td>
         </tr>
         <tr>
             <th>Email</th>
@@ -68,31 +68,31 @@
     <table>
         @if (count($student->educations) > 0)
             <tr>
-                <td rowspan="{{ count($student->educations) + 1 }}" style="width: 150px; background-color: #f2f2f2; text-align: center; vertical-align: middle;">
-                    Pendidikan
+                <td rowspan="{{ count($student->educations) + 1 }}" style="width: 150px; background-color: #f2f2f2; vertical-align: middle; ">
+                    <b>Pendidikan</b>
                 </td>
+                <th style="width: 55px;">Tahun</th>
+                <th style="width: 55px;">Bulan</th>
                 <th>Nama Sekolah</th>
-                <th>Tahun Masuk</th>
-                <th>Bulan Masuk</th>
-                <th>Status</th>
+                <th style="width: 55px;">Status</th>
             </tr>
             @foreach ($student->educations as $edu)
             <tr>
-                <td>{{ $edu->nama_sekolah }}</td>
                 <td>{{ $edu->tahun_masuksekolah }}</td>
                 <td>{{ $edu->bulan__masuksekolah }}</td>
+                <td>{{ $edu->nama_sekolah }}</td>
                 <td>{{ $edu->status_sekolah }}</td>
             </tr>
             @endforeach
         @else
             <tr>
-                <td rowspan="2" style="width: 100px; background-color: #f2f2f2; text-align: center; vertical-align: middle;">
-                    Pendidikan
+                <td rowspan="2" style="width: 100px; background-color: #f2f2f2; vertical-align: middle;">
+                    <b>Pendidikan</b>
                 </td>
+                <th style="width: 55px;">Tahun</th>
+                <th style="width: 55px;">Bulan</th>
                 <th>Nama Sekolah</th>
-                <th>Tahun Masuk</th>
-                <th>Bulan Masuk</th>
-                <th>Status</th>
+                <th style="width: 55px;">Status</th>
             </tr>
             <tr>
                 <td>-</td>
@@ -106,31 +106,31 @@
     <table>
         @if (count($student->experiences) > 0)
             <tr>
-                <td rowspan="{{ count($student->experiences) + 1 }}" style="width: 150px; background-color: #f2f2f2; text-align: center; vertical-align: middle;">
-                    Pengalaman Kerja
+                <td rowspan="{{ count($student->experiences) + 1 }}" style="width: 150px; background-color: #f2f2f2; vertical-align: middle;">
+                    <b>Pengalaman Kerja</b>
                 </td>
+                <th style="width: 55px;">Tahun</th>
+                <th style="width: 55px;">Bulan</th>
                 <th>Nama Perusahaan</th>
-                <th>Tahun Masuk</th>
-                <th>Bulan Masuk</th>
-                <th>Status</th>
+                <th style="width: 55px;">Status</th>
             </tr>
             @foreach ($student->experiences as $exp)
             <tr>
-                <td>{{ $exp->nama_perusahaan }}</td>
                 <td>{{ $exp->tahun_masukaperusahaan }}</td>
                 <td>{{ $exp->bulan_masukaperusahaan }}</td>
+                <td>{{ $exp->nama_perusahaan }}</td>
                 <td>{{ $exp->status }}</td>
             </tr>
             @endforeach
         @else
             <tr>
-                <td rowspan="2" style="width: 150px; background-color: #f2f2f2; text-align: center; vertical-align: middle;">
-                    Pengalaman Kerja
+                <td rowspan="2" style="width: 150px; background-color: #f2f2f2; vertical-align: middle;">
+                    <b>Pengalaman Kerja</b>
                 </td>
+                <th style="width: 55px;">Tahun</th>
+                <th style="width: 55px;">Bulan</th>
                 <th>Nama Perusahaan</th>
-                <th>Tahun Masuk</th>
-                <th>Bulan Masuk</th>
-                <th>Status</th>
+                <th style="width: 55px;">Status</th>
             </tr>
             <tr>
                 <td>-</td>
@@ -144,11 +144,11 @@
     <table>
         @if (count($student->certificates) > 0)
             <tr>
-                <td rowspan="{{ count($student->certificates) + 1 }}" style="width: 150px; background-color: #f2f2f2; text-align: center; vertical-align: middle;">
-                    Sertifikat
+                <td rowspan="{{ count($student->certificates) + 1 }}" style="width: 150px; background-color: #f2f2f2; vertical-align: middle;">
+                    <b>Sertifikat</b>
                 </td>
-                <th>Tahun</th>
-                <th>Bulan</th>
+                <th style="width: 55px;">Tahun</th>
+                <th style="width: 55px;">Bulan</th>
                 <th>Nama Sertifikat</th>
             </tr>
             @foreach ($student->certificates as $cert)
@@ -160,12 +160,12 @@
             @endforeach
         @else
             <tr>
-                <td rowspan="2" style="width: 150px; background-color: #f2f2f2; text-align: center; vertical-align: middle;">
-                    Sertifikat
+                <td rowspan="2" style="width: 150px; background-color: #f2f2f2; vertical-align: middle;">
+                    <b>Sertifikat</b>
                 </td>
+                <th style="width: 55px;">Tahun</th>
+                <th style="width: 55px;">Bulan</th>
                 <th>Nama Sertifikat</th>
-                <th>Tahun</th>
-                <th>Bulan</th>
             </tr>
             <tr>
                 <td>-</td>

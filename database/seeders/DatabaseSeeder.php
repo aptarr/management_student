@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'name' => 'admin1',
-                'email' => 'admin1@ex.com',
+                'email' => 'a1@ex',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123'),
                 'created_at' => now(),
@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'admin2',
-                'email' => 'admin2@ex.com',
+                'email' => 'a2@ex',
                 'email_verified_at' => now(),
                 'password' => Hash::make('123'),
                 'created_at' => now(),
